@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function ProfileEditor({ initialUser }: { initialUser: any }) {
+  const { t } = useLanguage();
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [history, setHistory] = useState<any[]>([]);
@@ -45,7 +47,16 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="mb-10">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 text-[#111827]">
+          {t('profile.title')}
+        </h1>
+        <p className="text-lg text-gray-500 font-medium">
+          {t('profile.subtitle')}
+        </p>
+      </div>
+      <div className="space-y-8">
       {/* Profile Card */}
       <section className="bg-card border border-[#E5E7EB] rounded-3xl p-8 shadow-sm flex flex-col md:flex-row md:items-center space-y-6 md:space-y-0 md:space-x-8 transition-all">
         
@@ -70,7 +81,7 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
           {isEditing ? (
             <div className="space-y-4 max-w-sm">
               <div>
-                <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-1">Display Name</label>
+                <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-1">{t('profile.name')}</label>
                 <input 
                   type="text" 
                   value={draft.name}
@@ -79,7 +90,7 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-1">Email Address</label>
+                <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-1">{t('profile.email')}</label>
                 <input 
                   type="email" 
                   value={draft.email}
@@ -99,7 +110,7 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
               <p className="text-muted-foreground font-medium mb-4">{user.email}</p>
               <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#F3F4F6] border border-[#E5E7EB] text-sm font-bold text-foreground">
                 <span className="w-2 h-2 rounded-full bg-gray-400 mr-2"></span>
-                Free Tier
+                {t('profile.free')}
               </div>
             </>
           )}
@@ -117,7 +128,7 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
                 {isLoading ? (
                   <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                 ) : (
-                  "Save"
+                  t('profile.save')
                 )}
               </button>
               <button 
@@ -125,7 +136,7 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
                 disabled={isLoading}
                 className="w-full bg-card border border-[#E5E7EB] text-foreground hover:bg-muted px-6 py-3 rounded-xl font-bold transition-all shadow-sm h-12"
               >
-                Cancel
+                {t('profile.cancel')}
               </button>
             </div>
           ) : (
@@ -133,7 +144,7 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
               onClick={() => toast.success('Premium upgrades are coming soon!')}
               className="w-full md:w-auto bg-[#111827] hover:bg-black text-white px-6 py-3 rounded-xl font-medium transition-colors shadow-sm"
             >
-              Upgrade to Premium
+              {t('profile.upgrade')}
             </button>
           )}
         </div>
@@ -142,17 +153,17 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
       {/* History / Saved Plans */}
       <section>
         <div className="flex items-center justify-between mb-5">
-          <h3 className="text-xl font-bold text-[#111827]">Recent Action Plans</h3>
+          <h3 className="text-xl font-bold text-[#111827]">{t('profile.recent')}</h3>
           <span className="text-sm font-medium text-muted-foreground bg-muted px-3 py-1 rounded-full border border-gray-200">
-            {history.length} Saved
+            {history.length} {t('profile.saved')}
           </span>
         </div>
         
         {history.length === 0 ? (
           <div className="bg-card border border-[#E5E7EB] rounded-3xl p-10 text-center shadow-sm">
             <span className="text-4xl mb-4 block">📄</span>
-            <h4 className="text-lg font-bold text-[#111827] mb-2">No saved plans yet</h4>
-            <p className="text-muted-foreground">Generate an action plan and it will appear here automatically.</p>
+            <h4 className="text-lg font-bold text-[#111827] mb-2">{t('profile.no_plans')}</h4>
+            <p className="text-muted-foreground">{t('profile.no_plans_desc')}</p>
           </div>
         ) : (
           <div className="bg-card border border-[#E5E7EB] rounded-3xl shadow-sm overflow-hidden">
@@ -164,7 +175,7 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
                   </div>
                   <div>
                     <h4 className="text-lg font-bold text-[#111827] group-hover:text-primary transition-colors">{item.title}</h4>
-                    <p className="text-sm text-muted-foreground font-medium mt-0.5">Generated on {item.date}</p>
+                    <p className="text-sm text-muted-foreground font-medium mt-0.5">{t('profile.generated_on')} {item.date}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
@@ -172,7 +183,7 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
                     onClick={() => setViewingPlan(item)}
                     className="hidden md:block text-sm font-bold text-muted-foreground hover:text-primary transition-colors"
                   >
-                    View Plan
+                    {t('profile.view_plan')}
                   </button>
                   <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </div>
@@ -197,7 +208,7 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
               <span className="text-4xl mr-4">{viewingPlan.icon}</span>
               <div>
                 <h3 className="text-2xl font-bold text-[#111827]">{viewingPlan.title}</h3>
-                <p className="text-sm text-muted-foreground">Saved on {viewingPlan.date}</p>
+                <p className="text-sm text-muted-foreground">{t('profile.saved')} {viewingPlan.date}</p>
               </div>
             </div>
             
@@ -207,7 +218,7 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
               </div>
 
               <div>
-                <h4 className="text-lg font-bold text-[#111827] mb-3">Required Services</h4>
+                <h4 className="text-lg font-bold text-[#111827] mb-3">{t('plan.services')}</h4>
                 <div className="space-y-3">
                   {viewingPlan.data.services?.map((s: any, i: number) => (
                     <div key={i} className="border border-[#E5E7EB] rounded-xl p-4 bg-muted/30">
@@ -224,7 +235,7 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
 
               {viewingPlan.data.next_steps && (
                 <div>
-                  <h4 className="text-lg font-bold text-[#111827] mb-3">Next Steps</h4>
+                  <h4 className="text-lg font-bold text-[#111827] mb-3">{t('plan.next')}</h4>
                   <ul className="space-y-2">
                     {viewingPlan.data.next_steps.map((step: string, i: number) => (
                       <li key={i} className="text-sm text-foreground flex items-start">
@@ -239,6 +250,7 @@ export default function ProfileEditor({ initialUser }: { initialUser: any }) {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

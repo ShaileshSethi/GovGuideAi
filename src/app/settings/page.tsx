@@ -8,7 +8,7 @@ import { useLanguage } from '@/context/LanguageContext';
 export default function SettingsPage() {
   const [notifications, setNotifications] = useState(true);
   const [twoFactor, setTwoFactor] = useState(false);
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
   const [textSize, setTextSize] = useState('Medium');
 
   const handleDownloadData = () => {
@@ -58,10 +58,10 @@ export default function SettingsPage() {
     <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 pb-12">
       <div className="mb-10">
         <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 text-foreground">
-          Settings
+          {t('settings.title')}
         </h1>
         <p className="text-lg text-muted-foreground font-medium">
-          Manage your app preferences, security, and appearance.
+          {t('settings.subtitle')}
         </p>
       </div>
 
@@ -70,13 +70,13 @@ export default function SettingsPage() {
         {/* Security & Privacy */}
         <section className="bg-card border border-border rounded-3xl overflow-hidden shadow-sm">
           <div className="p-6 border-b border-border bg-background/50">
-            <h2 className="text-lg font-bold text-foreground">Security & Privacy</h2>
+            <h2 className="text-lg font-bold text-foreground">{t('settings.security')}</h2>
           </div>
           
           <div className="p-6 border-b border-border flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-foreground">Two-Factor Authentication (2FA)</h3>
-              <p className="text-sm text-muted-foreground mt-1">Add an extra layer of security to your account.</p>
+              <h3 className="font-bold text-foreground">{t('settings.2fa')}</h3>
+              <p className="text-sm text-muted-foreground mt-1">{t('settings.2fa_desc')}</p>
             </div>
             <button 
               onClick={() => {
@@ -91,11 +91,11 @@ export default function SettingsPage() {
 
           <div className="p-6 flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0">
             <div>
-              <h3 className="font-bold text-foreground">Active Sessions</h3>
-              <p className="text-sm text-muted-foreground mt-1">You are currently logged in on 1 device.</p>
+              <h3 className="font-bold text-foreground">{t('settings.sessions')}</h3>
+              <p className="text-sm text-muted-foreground mt-1">{t('settings.sessions_desc')}</p>
             </div>
             <button onClick={handleLogOutAll} className="bg-background border border-border text-foreground hover:bg-muted px-4 py-2 rounded-xl text-sm font-bold transition-colors shadow-sm">
-              Log out all devices
+              {t('settings.logout_all')}
             </button>
           </div>
         </section>
@@ -103,13 +103,13 @@ export default function SettingsPage() {
         {/* Preferences */}
         <section className="bg-card border border-border rounded-3xl overflow-hidden shadow-sm">
           <div className="p-6 border-b border-border bg-background/50">
-            <h2 className="text-lg font-bold text-foreground">App Preferences</h2>
+            <h2 className="text-lg font-bold text-foreground">{t('settings.preferences')}</h2>
           </div>
           
           <div className="p-6 border-b border-border flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-foreground">Push Notifications</h3>
-              <p className="text-sm text-muted-foreground mt-1">Receive updates on your document statuses.</p>
+              <h3 className="font-bold text-foreground">{t('settings.notifications')}</h3>
+              <p className="text-sm text-muted-foreground mt-1">{t('settings.notifications_desc')}</p>
             </div>
             <button 
               onClick={() => {
@@ -124,8 +124,8 @@ export default function SettingsPage() {
 
           <div className="p-6 border-b border-border flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-foreground">Language</h3>
-              <p className="text-sm text-muted-foreground mt-1">Select your preferred language.</p>
+              <h3 className="font-bold text-foreground">{t('settings.language')}</h3>
+              <p className="text-sm text-muted-foreground mt-1">{t('settings.language_desc')}</p>
             </div>
             <select 
               value={language}
@@ -139,8 +139,8 @@ export default function SettingsPage() {
           
           <div className="p-6 flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-foreground">Accessibility (Text Size)</h3>
-              <p className="text-sm text-muted-foreground mt-1">Adjust the reading size of action plans.</p>
+              <h3 className="font-bold text-foreground">{t('settings.text_size')}</h3>
+              <p className="text-sm text-muted-foreground mt-1">{t('settings.text_size_desc')}</p>
             </div>
             <select 
               value={textSize}
@@ -157,16 +157,16 @@ export default function SettingsPage() {
         {/* Data Management */}
         <section className="bg-card border border-border rounded-3xl overflow-hidden shadow-sm">
           <div className="p-6 border-b border-border bg-background/50">
-            <h2 className="text-lg font-bold text-foreground">Data Management</h2>
+            <h2 className="text-lg font-bold text-foreground">{t('settings.data')}</h2>
           </div>
           <div className="p-6 flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0">
             <div>
-              <h3 className="font-bold text-foreground">Export Data</h3>
-              <p className="text-sm text-muted-foreground mt-1">Download all your generated action plans as a JSON.</p>
+              <h3 className="font-bold text-foreground">{t('settings.export')}</h3>
+              <p className="text-sm text-muted-foreground mt-1">{t('settings.export_desc')}</p>
             </div>
             <button onClick={handleDownloadData} className="bg-background border border-border text-foreground hover:bg-muted px-4 py-2 rounded-xl text-sm font-bold transition-colors shadow-sm flex items-center justify-center space-x-2">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-              <span>Download</span>
+              <span>{t('settings.download')}</span>
             </button>
           </div>
         </section>
@@ -174,15 +174,15 @@ export default function SettingsPage() {
         {/* Danger Zone */}
         <section className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 rounded-3xl overflow-hidden shadow-sm">
           <div className="p-6 border-b border-red-200 dark:border-red-900/50 bg-red-100/50 dark:bg-red-900/20">
-            <h2 className="text-lg font-bold text-red-700 dark:text-red-500">Danger Zone</h2>
+            <h2 className="text-lg font-bold text-red-700 dark:text-red-500">{t('settings.danger')}</h2>
           </div>
           <div className="p-6 flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0">
             <div>
-              <h3 className="font-bold text-red-700 dark:text-red-500">Delete Account</h3>
-              <p className="text-sm text-red-600/80 dark:text-red-500/80 mt-1">Permanently remove your profile and history.</p>
+              <h3 className="font-bold text-red-700 dark:text-red-500">{t('settings.delete')}</h3>
+              <p className="text-sm text-red-600/80 dark:text-red-500/80 mt-1">{t('settings.delete_desc')}</p>
             </div>
             <button onClick={handleDeleteAccount} className="bg-white dark:bg-red-950 border border-red-200 dark:border-red-900 text-red-600 dark:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/50 px-6 py-2.5 rounded-xl font-bold transition-colors shadow-sm">
-              Delete Account
+              {t('settings.delete')}
             </button>
           </div>
         </section>
