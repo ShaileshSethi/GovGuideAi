@@ -400,7 +400,7 @@ export default function Home() {
                       {/* Document Checklist for this service */}
                       <h5 className="text-lg font-bold text-[#111827] mb-4">{t('plan.docs')}</h5>
                       <div className="space-y-3 mb-8">
-                        {service.required_documents.map((doc, docIdx) => (
+                        {service.required_documents?.map((doc, docIdx) => (
                           <div
                             key={docIdx}
                             className={`bg-card border p-4 rounded-2xl transition-all duration-200 flex items-center justify-between shadow-sm ${checkedDocs[serviceIdx]?.[docIdx] ? 'border-[#22C55E] bg-[#F0FDF4]' : 'border-[#E5E7EB] hover:border-gray-300'}`}
@@ -439,7 +439,7 @@ export default function Home() {
                       <h5 className="text-lg font-bold text-[#111827] mb-4">{t('plan.steps')}</h5>
                       <div className="bg-card border border-[#E5E7EB] p-6 rounded-2xl shadow-sm mb-6">
                         <div className="relative border-l-2 border-[#E5E7EB] ml-4 space-y-6">
-                          {service.application_steps.map((step, idx) => (
+                          {service.application_steps?.map((step, idx) => (
                             <div key={idx} className="relative pl-8 group">
                               <div className="absolute -left-[17px] top-0.5 w-8 h-8 rounded-full bg-card border-2 border-[#2563EB] flex items-center justify-center shadow-sm group-hover:bg-[#2563EB] transition-colors duration-300">
                                 <span className="text-xs font-bold text-[#2563EB] group-hover:text-white">{idx + 1}</span>
