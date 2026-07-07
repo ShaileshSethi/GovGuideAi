@@ -54,7 +54,7 @@ export async function POST(request: Request) {
       
       if (queryLower.includes("passport") || queryLower.includes("travel")) {
         matchedService = services.find((s: any) => s.id === "passport") || matchedService;
-      } else if (queryLower.includes("drive") || queryLower.includes("licence") || queryLower.includes("vehicle")) {
+      } else if (queryLower.includes("drive") || queryLower.includes("licence") || queryLower.includes("license") || queryLower.includes("vehicle")) {
         matchedService = services.find((s: any) => s.id === "driving_licence") || matchedService;
       } else if (queryLower.includes("marriage") || queryLower.includes("wedding")) {
         matchedService = services.find((s: any) => s.id === "marriage_certificate") || matchedService;
