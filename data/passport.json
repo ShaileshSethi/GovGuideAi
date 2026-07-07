@@ -1,0 +1,43 @@
+{
+  "id": "passport",
+  "name": "Indian Passport",
+  "description": "An official travel document issued by the Ministry of External Affairs, Government of India, to Indian citizens for international travel.",
+  "category": "Travel & Immigration",
+  "estimated_processing_time": "Normal: 15-30 days, Tatkaal: 1-3 days",
+  "application_fee": "Normal (36 pages): ₹1500, Tatkaal (36 pages): ₹3500",
+  "official_apply_link": "https://www.passportindia.gov.in/",
+  "official_information_link": "https://www.passportindia.gov.in/AppOnlineProject/welcomeLink",
+  "eligibility": "Must be a citizen of India.",
+  "application_steps": [
+    "Register on the Passport Seva Online Portal.",
+    "Login to the portal using the registered login Id.",
+    "Click 'Apply for Fresh Passport/Re-issue of Passport'.",
+    "Fill in the required details in the form and submit.",
+    "Click 'Pay and Schedule Appointment' to book an appointment.",
+    "Print the application receipt containing the Application Reference Number (ARN).",
+    "Visit the Passport Seva Kendra (PSK) with original documents on the scheduled date."
+  ],
+  "required_documents": [
+    {
+      "name": "Proof of Present Address",
+      "mandatory": true,
+      "purpose": "To verify where the police verification should be conducted.",
+      "where_to_get": "Aadhaar, Electricity Bill, Rent Agreement, Telephone Bill",
+      "issuing_authority": "Utility Companies or Government",
+      "official_link": "https://www.passportindia.gov.in/AppOnlineProject/populatingUndertakingLetters/AttachmentAdvisorSub"
+    },
+    {
+      "name": "Proof of Date of Birth",
+      "mandatory": true,
+      "purpose": "To verify age and identity.",
+      "where_to_get": "Birth Certificate, Aadhaar, PAN Card, Transfer/School Leaving Certificate",
+      "issuing_authority": "Municipal Corporation or Educational Board",
+      "official_link": "https://www.passportindia.gov.in/AppOnlineProject/populatingUndertakingLetters/AttachmentAdvisorSub"
+    }
+  ],
+  "common_mistakes": [
+    "Current address mismatch with the address proof provided.",
+    "Signature mismatch on documents.",
+    "Failing to provide a continuous 1-year address history."
+  ]
+}

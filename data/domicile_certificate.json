@@ -1,0 +1,42 @@
+{
+  "id": "domicile_certificate",
+  "name": "Domicile Certificate",
+  "description": "Issued by a state government to prove the applicant is a continuous resident of that state.",
+  "category": "Certificates & Licenses",
+  "estimated_processing_time": "10-20 days",
+  "application_fee": "₹20 to ₹50",
+  "official_apply_link": "https://services.india.gov.in/service/listing?cat_id=128",
+  "official_information_link": "https://services.india.gov.in/service/listing?cat_id=128",
+  "eligibility": "Must have resided in the state for the mandated minimum years (varies by state).",
+  "application_steps": [
+    "Visit the State e-District portal or Tehsildar office.",
+    "Fill the domicile application form.",
+    "Attach proofs showing continuous residence (e.g., consecutive years of school marksheets, old utility bills).",
+    "Attach a notarized affidavit declaring stay.",
+    "Submit and await field verification by a local officer.",
+    "Download the issued certificate."
+  ],
+  "required_documents": [
+    {
+      "name": "Proof of Continuous Residence",
+      "mandatory": true,
+      "purpose": "To prove stay in the state for the mandated period.",
+      "where_to_get": "Old Utility Bills, School/College Certificates spanning multiple years",
+      "issuing_authority": "Various",
+      "official_link": "https://india.gov.in"
+    },
+    {
+      "name": "Affidavit",
+      "mandatory": true,
+      "purpose": "Legal declaration of residence.",
+      "where_to_get": "Notary Public",
+      "issuing_authority": "Court Notary",
+      "official_link": "https://india.gov.in"
+    }
+  ],
+  "common_mistakes": [
+    "Gaps in address proof years (failing to prove *continuous* stay).",
+    "Applying immediately after moving to a new state.",
+    "Notarized affidavit not in the correct state-prescribed format."
+  ]
+}

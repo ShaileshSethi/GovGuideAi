@@ -1,0 +1,40 @@
+{
+  "id": "death_certificate",
+  "name": "Death Certificate",
+  "description": "An official government document declaring the cause, location, and time of death, required to settle legal obligations and inheritance.",
+  "category": "Family & Marriage",
+  "estimated_processing_time": "7-15 days",
+  "application_fee": "Free (within 21 days), Late fees apply thereafter",
+  "official_apply_link": "https://crsorgi.gov.in/",
+  "official_information_link": "https://crsorgi.gov.in/",
+  "eligibility": "Immediate relatives or head of the family.",
+  "application_steps": [
+    "If death occurred in a hospital, collect the medical certificate of cause of death; the hospital will notify the registrar.",
+    "If death occurred at home, report it to the local municipal/panchayat registrar within 21 days.",
+    "Submit the death registration form along with the deceased's ID and cremation/burial receipt.",
+    "Collect the death certificate from the registrar's office after processing."
+  ],
+  "required_documents": [
+    {
+      "name": "Proof of Death",
+      "mandatory": true,
+      "purpose": "Medical or administrative confirmation of death.",
+      "where_to_get": "Hospital Doctor or Cremation/Burial Ground",
+      "issuing_authority": "Medical Officer / Cemetery",
+      "official_link": "https://crsorgi.gov.in/"
+    },
+    {
+      "name": "Deceased's Identity Proof",
+      "mandatory": true,
+      "purpose": "To officially identify the deceased person.",
+      "where_to_get": "Aadhaar Card, Voter ID, PAN Card",
+      "issuing_authority": "Government of India",
+      "official_link": "https://crsorgi.gov.in/"
+    }
+  ],
+  "common_mistakes": [
+    "Delaying registration beyond 21 days, which requires a Magistrate's order.",
+    "Discrepancies in the deceased's name between the hospital record and their Aadhaar.",
+    "Failing to obtain the cremation ground receipt."
+  ]
+}

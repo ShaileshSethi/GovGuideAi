@@ -1,0 +1,51 @@
+{
+  "id": "marriage_certificate",
+  "name": "Marriage Certificate",
+  "description": "An official declaration that two people are legally married, required for joint loans, passports, and name changes.",
+  "category": "Family & Marriage",
+  "estimated_processing_time": "Hindu Marriage Act: 15-30 days, Special Marriage Act: 60 days",
+  "application_fee": "₹100 to ₹500 depending on the state",
+  "official_apply_link": "https://services.india.gov.in/service/listing?cat_id=140",
+  "official_information_link": "https://services.india.gov.in/service/listing?cat_id=140",
+  "eligibility": "Groom must be 21+ and Bride must be 18+.",
+  "application_steps": [
+    "Visit the State's e-District portal or the local Sub-Divisional Magistrate (SDM) office.",
+    "Fill the application form, signed by both husband and wife.",
+    "Submit proofs of age, residence, and marriage (photos, invitation card).",
+    "Submit joint affidavits declaring marital status and nationality.",
+    "Book an appointment for verification.",
+    "Both parties and witnesses must be present before the Registrar on the appointment day.",
+    "Certificate is issued after successful verification."
+  ],
+  "required_documents": [
+    {
+      "name": "Proof of Age (Both)",
+      "mandatory": true,
+      "purpose": "To verify legal marriage age.",
+      "where_to_get": "Class 10th Certificate, Passport, or Birth Certificate",
+      "issuing_authority": "Government/Educational Board",
+      "official_link": "https://india.gov.in"
+    },
+    {
+      "name": "Marriage Proofs",
+      "mandatory": true,
+      "purpose": "Evidence that the marriage ceremony took place.",
+      "where_to_get": "Wedding Photos, Original Invitation Card, Priest's Certificate",
+      "issuing_authority": "Applicant/Priest",
+      "official_link": "https://india.gov.in"
+    },
+    {
+      "name": "Witness ID Proofs",
+      "mandatory": true,
+      "purpose": "To verify the identity of the witnesses.",
+      "where_to_get": "Aadhaar, PAN, Voter ID of witnesses",
+      "issuing_authority": "Government of India",
+      "official_link": "https://india.gov.in"
+    }
+  ],
+  "common_mistakes": [
+    "Witnesses failing to appear on the appointment day.",
+    "Submitting a digital invitation card instead of a printed original.",
+    "Name mismatch in pre-marriage identity documents."
+  ]
+}

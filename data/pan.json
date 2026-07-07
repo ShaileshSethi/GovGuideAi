@@ -1,0 +1,51 @@
+{
+  "id": "pan",
+  "name": "PAN Card",
+  "description": "Permanent Account Number (PAN) is a ten-digit alphanumeric identifier, issued by the Income Tax Department.",
+  "category": "Business & Taxes",
+  "estimated_processing_time": "15-20 days (e-PAN available within hours/days)",
+  "application_fee": "Physical PAN inside India: ₹107, e-PAN: ₹66",
+  "official_apply_link": "https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html",
+  "official_information_link": "https://incometaxindia.gov.in/",
+  "eligibility": "All Indian citizens (including minors) and corporate entities.",
+  "application_steps": [
+    "Visit the NSDL (Protean) or UTIITSL official portal.",
+    "Select Form 49A for Indian Citizens.",
+    "Fill out the application form with personal details.",
+    "Upload digital copies of identity, address, and DOB proofs (if applying paperless via e-KYC).",
+    "Pay the application fee online.",
+    "Submit the application and save the 15-digit acknowledgement number.",
+    "If not using e-KYC, send the physical documents and signed acknowledgement to NSDL/UTIITSL office."
+  ],
+  "required_documents": [
+    {
+      "name": "Proof of Identity",
+      "mandatory": true,
+      "purpose": "To establish the applicant's name and identity.",
+      "where_to_get": "Aadhaar Card, Voter ID, Passport, Driving Licence",
+      "issuing_authority": "Government of India",
+      "official_link": "https://www.protean-tinpan.com/services/pan/documents-required.html"
+    },
+    {
+      "name": "Proof of Address",
+      "mandatory": true,
+      "purpose": "For dispatching the physical PAN card.",
+      "where_to_get": "Aadhaar Card, Post Office Passbook, Latest Utility Bills",
+      "issuing_authority": "Utility Provider or Government",
+      "official_link": "https://www.protean-tinpan.com/services/pan/documents-required.html"
+    },
+    {
+      "name": "Proof of Date of Birth",
+      "mandatory": true,
+      "purpose": "To verify age.",
+      "where_to_get": "Birth Certificate, Aadhaar Card, SSLC Certificate",
+      "issuing_authority": "Municipal Corporation or Educational Board",
+      "official_link": "https://www.protean-tinpan.com/services/pan/documents-required.html"
+    }
+  ],
+  "common_mistakes": [
+    "Name mismatch between Aadhaar and application form.",
+    "Photographs lacking a white background.",
+    "Signing outside the designated box."
+  ]
+}

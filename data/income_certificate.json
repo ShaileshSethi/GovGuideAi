@@ -1,0 +1,43 @@
+{
+  "id": "income_certificate",
+  "name": "Income Certificate",
+  "description": "An official document certifying the annual income of an individual or family, used for subsidies and scholarships.",
+  "category": "Certificates & Licenses",
+  "estimated_processing_time": "7-15 days",
+  "application_fee": "₹15 to ₹50",
+  "official_apply_link": "https://services.india.gov.in/service/listing?cat_id=128",
+  "official_information_link": "https://services.india.gov.in/service/listing?cat_id=128",
+  "eligibility": "Resident of the respective state.",
+  "application_steps": [
+    "Visit the State's e-District portal or local CSC/Tehsildar office.",
+    "Fill out the Income Certificate application form.",
+    "Attach salary slips, ITR, or an income affidavit.",
+    "Attach identity and address proofs.",
+    "Submit the application and pay the nominal fee.",
+    "A Patwari or local officer may conduct a verification inquiry.",
+    "Download the digitally signed certificate from the portal."
+  ],
+  "required_documents": [
+    {
+      "name": "Income Proof",
+      "mandatory": true,
+      "purpose": "To establish the total family income.",
+      "where_to_get": "Salary Slips, ITR, or Court Affidavit",
+      "issuing_authority": "Employer, IT Dept, or Notary",
+      "official_link": "https://india.gov.in"
+    },
+    {
+      "name": "Identity & Address Proof",
+      "mandatory": true,
+      "purpose": "To verify identity and state residence.",
+      "where_to_get": "Aadhaar Card, Ration Card",
+      "issuing_authority": "Government of India",
+      "official_link": "https://india.gov.in"
+    }
+  ],
+  "common_mistakes": [
+    "Failing to declare income from all sources (e.g., agriculture + business).",
+    "Using expired documents or un-notarized affidavits.",
+    "Applying in a state where the applicant does not hold permanent residence."
+  ]
+}

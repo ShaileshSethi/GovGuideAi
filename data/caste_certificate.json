@@ -1,0 +1,42 @@
+{
+  "id": "caste_certificate",
+  "name": "Caste Certificate",
+  "description": "Documentary proof belonging to SC, ST, or OBC, required to claim reservations in education and government jobs.",
+  "category": "Certificates & Licenses",
+  "estimated_processing_time": "15-30 days",
+  "application_fee": "₹10 to ₹50",
+  "official_apply_link": "https://services.india.gov.in/service/listing?cat_id=128",
+  "official_information_link": "https://services.india.gov.in/service/listing?cat_id=128",
+  "eligibility": "Belong to a recognized SC/ST/OBC category in the state.",
+  "application_steps": [
+    "Apply via the State's e-District portal or Revenue Department.",
+    "Fill the caste certificate application form.",
+    "Upload proof of caste (e.g., relative's certificate, school extract).",
+    "For OBC, upload income proof to verify Non-Creamy Layer status.",
+    "Submit the application and wait for verification by the Tehsildar.",
+    "Download the certificate once approved."
+  ],
+  "required_documents": [
+    {
+      "name": "Proof of Caste",
+      "mandatory": true,
+      "purpose": "To verify the applicant's caste lineage.",
+      "where_to_get": "Father's/Relative's Caste Certificate, School Extract",
+      "issuing_authority": "Tehsildar / School Principal",
+      "official_link": "https://india.gov.in"
+    },
+    {
+      "name": "Income Proof (For OBC NCL)",
+      "mandatory": false,
+      "purpose": "Required only for OBC applicants to prove Non-Creamy Layer status.",
+      "where_to_get": "ITR or Income Certificate",
+      "issuing_authority": "Revenue Department",
+      "official_link": "https://india.gov.in"
+    }
+  ],
+  "common_mistakes": [
+    "Unable to produce a paternal relative's valid caste certificate.",
+    "OBC applicants failing to attach the Non-Creamy Layer declaration/income proof.",
+    "Applying in the wrong state (caste status varies by state)."
+  ]
+}

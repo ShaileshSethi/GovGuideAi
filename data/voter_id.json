@@ -1,0 +1,44 @@
+{
+  "id": "voter_id",
+  "name": "Voter ID Card",
+  "description": "The Electors Photo Identity Card (EPIC) issued by the Election Commission of India, serving as identity proof and allowing citizens to vote.",
+  "category": "Identity Documents",
+  "estimated_processing_time": "30-45 days",
+  "application_fee": "Free",
+  "official_apply_link": "https://voters.eci.gov.in/",
+  "official_information_link": "https://eci.gov.in/",
+  "eligibility": "Indian citizen, aged 18 or above.",
+  "application_steps": [
+    "Visit the official Voters' Services Portal.",
+    "Register and login to the portal.",
+    "Select 'Fill Form 6' for new voter registration.",
+    "Fill out the form completely with personal and family details.",
+    "Upload scanned copies of age proof, address proof, and a passport-size photograph.",
+    "Submit the form and save the reference number.",
+    "A Booth Level Officer (BLO) may visit your address for verification.",
+    "Once approved, the EPIC is delivered by post."
+  ],
+  "required_documents": [
+    {
+      "name": "Proof of Age",
+      "mandatory": true,
+      "purpose": "To verify the applicant is 18 years or older.",
+      "where_to_get": "Birth Certificate, Class 10/12 Marksheet, PAN Card, Aadhaar",
+      "issuing_authority": "Government of India",
+      "official_link": "https://voters.eci.gov.in/"
+    },
+    {
+      "name": "Proof of Residence",
+      "mandatory": true,
+      "purpose": "To allocate the correct polling constituency.",
+      "where_to_get": "Utility Bill, Bank Passbook, Rent Agreement, Passport",
+      "issuing_authority": "Utility Providers / Post Office",
+      "official_link": "https://voters.eci.gov.in/"
+    }
+  ],
+  "common_mistakes": [
+    "Providing an old address proof where the applicant no longer resides.",
+    "Uploading a blurry or non-standard photograph.",
+    "Not coordinating with the BLO during the verification visit."
+  ]
+}

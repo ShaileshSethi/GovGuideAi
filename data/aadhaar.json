@@ -1,0 +1,52 @@
+{
+  "id": "aadhaar",
+  "name": "Aadhaar Card",
+  "description": "A 12-digit individual identification number issued by UIDAI, serving as proof of identity and address anywhere in India.",
+  "category": "Identity Documents",
+  "estimated_processing_time": "15-30 days",
+  "application_fee": "Fresh Enrolment: Free, Demographic Update: ₹50, Biometric Update: ₹100",
+  "official_apply_link": "https://appointments.uidai.gov.in/",
+  "official_information_link": "https://uidai.gov.in/",
+  "eligibility": "Any resident of India.",
+  "application_steps": [
+    "Locate an Enrolment Center near you.",
+    "Book an appointment online (optional but recommended).",
+    "Visit the Enrolment Center with your original documents.",
+    "Fill out the Aadhaar Enrolment Form.",
+    "Provide demographic and biometric data (fingerprints, iris scan).",
+    "Collect your Acknowledgement Slip containing the Enrolment ID (EID).",
+    "Check Aadhaar status online using the EID.",
+    "Download e-Aadhaar or wait for the physical card by post."
+  ],
+  "required_documents": [
+    {
+      "name": "Proof of Identity (PoI)",
+      "mandatory": true,
+      "purpose": "To verify your legal name and identity.",
+      "where_to_get": "Passport, PAN Card, Voter ID, Driving Licence",
+      "issuing_authority": "Government of India",
+      "official_link": "https://uidai.gov.in/images/commdoc/valid_documents_list.pdf"
+    },
+    {
+      "name": "Proof of Address (PoA)",
+      "mandatory": true,
+      "purpose": "To verify your current residential address.",
+      "where_to_get": "Passport, Bank Statement, Voter ID, Ration Card",
+      "issuing_authority": "Utility providers or Government",
+      "official_link": "https://uidai.gov.in/images/commdoc/valid_documents_list.pdf"
+    },
+    {
+      "name": "Proof of Date of Birth (PoB)",
+      "mandatory": false,
+      "purpose": "Required only if correcting or registering verified Date of Birth.",
+      "where_to_get": "Birth Certificate, SSLC Book, Passport",
+      "issuing_authority": "Municipal Corporation or Educational Board",
+      "official_link": "https://uidai.gov.in/images/commdoc/valid_documents_list.pdf"
+    }
+  ],
+  "common_mistakes": [
+    "Spelling mistakes in name compared to PoI document.",
+    "Providing unclear or non-original documents.",
+    "Not updating mobile number linked to Aadhaar."
+  ]
+}

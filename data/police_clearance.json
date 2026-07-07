@@ -1,0 +1,43 @@
+{
+  "id": "police_clearance",
+  "name": "Police Clearance Certificate (PCC)",
+  "description": "Issued to passport holders seeking employment, long-term visa, or residency abroad, certifying no criminal record.",
+  "category": "Travel & Immigration",
+  "estimated_processing_time": "1 day (if no verification needed) to 21 days",
+  "application_fee": "₹500",
+  "official_apply_link": "https://www.passportindia.gov.in/",
+  "official_information_link": "https://www.passportindia.gov.in/",
+  "eligibility": "Valid Indian Passport holder.",
+  "application_steps": [
+    "Register/login on the Passport Seva Portal.",
+    "Click 'Apply for Police Clearance Certificate'.",
+    "Fill the form, pay the fee, and book a PSK appointment.",
+    "Visit the PSK with original passport and address proofs.",
+    "Complete biometrics.",
+    "If physical police verification is triggered, wait for the police visit/call.",
+    "Collect or receive the PCC once the police report is cleared."
+  ],
+  "required_documents": [
+    {
+      "name": "Valid Passport",
+      "mandatory": true,
+      "purpose": "Primary identity and travel document.",
+      "where_to_get": "Passport Office",
+      "issuing_authority": "Ministry of External Affairs",
+      "official_link": "https://www.passportindia.gov.in/"
+    },
+    {
+      "name": "Purpose Proof",
+      "mandatory": true,
+      "purpose": "To justify the need for the PCC.",
+      "where_to_get": "Employer offer letter, Visa application, Sponsorship letter",
+      "issuing_authority": "Foreign Employer or Embassy",
+      "official_link": "https://www.passportindia.gov.in/"
+    }
+  ],
+  "common_mistakes": [
+    "Current address differs from passport address but no new address proof is provided.",
+    "Applying for PCC for a tourist visa (not required).",
+    "Missing the police verification call."
+  ]
+}

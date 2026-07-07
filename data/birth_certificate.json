@@ -1,0 +1,41 @@
+{
+  "id": "birth_certificate",
+  "name": "Birth Certificate",
+  "description": "A vital record that documents the birth of a child, establishing their identity, age, and citizenship.",
+  "category": "Family & Marriage",
+  "estimated_processing_time": "7-15 days",
+  "application_fee": "Free (within 21 days), Late fees apply thereafter",
+  "official_apply_link": "https://crsorgi.gov.in/",
+  "official_information_link": "https://crsorgi.gov.in/",
+  "eligibility": "Must be applied by parents or head of the family.",
+  "application_steps": [
+    "Obtain the birth letter from the hospital/nursing home.",
+    "If birth occurred at home, the head of the family must report it to the local registrar.",
+    "Fill the Birth Registration Form within 21 days.",
+    "Submit the form along with identity and address proofs of parents to the Municipal Corporation or Gram Panchayat.",
+    "Collect the certificate from the registrar's office after processing."
+  ],
+  "required_documents": [
+    {
+      "name": "Proof of Birth (Hospital Letter)",
+      "mandatory": true,
+      "purpose": "Official confirmation of birth.",
+      "where_to_get": "Hospital or Nursing Home",
+      "issuing_authority": "Hospital Administrator",
+      "official_link": "https://crsorgi.gov.in/"
+    },
+    {
+      "name": "Parent's Identity & Address Proof",
+      "mandatory": true,
+      "purpose": "To link the child to their parents and establish residence.",
+      "where_to_get": "Aadhaar Card, Voter ID, Passport",
+      "issuing_authority": "Government of India",
+      "official_link": "https://crsorgi.gov.in/"
+    }
+  ],
+  "common_mistakes": [
+    "Failing to register within the mandated 21 days.",
+    "Spelling errors in the child's or parents' names on the initial form.",
+    "Losing the original hospital birth slip."
+  ]
+}

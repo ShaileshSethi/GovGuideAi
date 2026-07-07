@@ -1,0 +1,52 @@
+{
+  "id": "driving_licence",
+  "name": "Driving Licence",
+  "description": "An official document issued by the Regional Transport Office (RTO) authorizing an individual to drive a motor vehicle in India.",
+  "category": "Vehicles & Transport",
+  "estimated_processing_time": "Learner's: Immediate after test, Permanent: 15-30 days",
+  "application_fee": "Learner's Licence: ₹200, Permanent Licence: ₹200, Driving Test: ₹300",
+  "official_apply_link": "https://sarathi.parivahan.gov.in/",
+  "official_information_link": "https://parivahan.gov.in/",
+  "eligibility": "16+ for gearless 2-wheelers (with consent), 18+ for light motor vehicles.",
+  "application_steps": [
+    "Visit the Parivahan Sarathi portal and select your state.",
+    "Apply for a Learner's Licence (LL) first. Fill the form and upload documents.",
+    "Book an appointment for the LL test or take it online via Aadhaar e-KYC.",
+    "Pass the test and download your Learner's Licence.",
+    "After 30 days of holding the LL, apply for a Permanent Driving Licence.",
+    "Book a slot for the driving test at the RTO.",
+    "Pass the practical driving test.",
+    "The DL will be dispatched to your registered address."
+  ],
+  "required_documents": [
+    {
+      "name": "Proof of Age",
+      "mandatory": true,
+      "purpose": "To verify the applicant meets the legal driving age.",
+      "where_to_get": "Birth Certificate, PAN Card, Class 10 Marksheet, Passport",
+      "issuing_authority": "Municipal Corporation / Educational Board",
+      "official_link": "https://sarathi.parivahan.gov.in/"
+    },
+    {
+      "name": "Proof of Address",
+      "mandatory": true,
+      "purpose": "For communication and jurisdiction mapping.",
+      "where_to_get": "Aadhaar Card, Passport, Voter ID, LIC Policy",
+      "issuing_authority": "Government of India",
+      "official_link": "https://sarathi.parivahan.gov.in/"
+    },
+    {
+      "name": "Form 1 and Form 1A (Medical Certificate)",
+      "mandatory": true,
+      "purpose": "To declare physical fitness (Form 1A mandatory for 40+ or transport vehicles).",
+      "where_to_get": "Registered Medical Practitioner",
+      "issuing_authority": "MBBS Doctor",
+      "official_link": "https://parivahan.gov.in/parivahan/en/content/download-forms"
+    }
+  ],
+  "common_mistakes": [
+    "Applying for a permanent DL before the 30-day Learner's period ends.",
+    "Failing to carry original documents to the RTO for verification.",
+    "Using an improper vehicle for the driving test."
+  ]
+}
