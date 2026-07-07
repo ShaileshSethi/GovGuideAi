@@ -50,12 +50,32 @@ export async function POST(request: Request) {
         console.warn("Could not read data directory for mock data fallback.");
       }
 
-      let matchedService = services.find((s: any) => queryLower.includes(s.id)) || services[0];
+      let matchedService = services[0];
       
       if (queryLower.includes("passport") || queryLower.includes("travel")) {
-        matchedService = services.find((s: any) => s.id === "passport");
+        matchedService = services.find((s: any) => s.id === "passport") || matchedService;
       } else if (queryLower.includes("drive") || queryLower.includes("licence") || queryLower.includes("vehicle")) {
-        matchedService = services.find((s: any) => s.id === "driving_licence");
+        matchedService = services.find((s: any) => s.id === "driving_licence") || matchedService;
+      } else if (queryLower.includes("marriage") || queryLower.includes("wedding")) {
+        matchedService = services.find((s: any) => s.id === "marriage_certificate") || matchedService;
+      } else if (queryLower.includes("birth")) {
+        matchedService = services.find((s: any) => s.id === "birth_certificate") || matchedService;
+      } else if (queryLower.includes("death")) {
+        matchedService = services.find((s: any) => s.id === "death_certificate") || matchedService;
+      } else if (queryLower.includes("income") || queryLower.includes("salary")) {
+        matchedService = services.find((s: any) => s.id === "income_certificate") || matchedService;
+      } else if (queryLower.includes("caste")) {
+        matchedService = services.find((s: any) => s.id === "caste_certificate") || matchedService;
+      } else if (queryLower.includes("domicile") || queryLower.includes("resident")) {
+        matchedService = services.find((s: any) => s.id === "domicile_certificate") || matchedService;
+      } else if (queryLower.includes("police") || queryLower.includes("pcc")) {
+        matchedService = services.find((s: any) => s.id === "police_clearance") || matchedService;
+      } else if (queryLower.includes("voter") || queryLower.includes("election")) {
+        matchedService = services.find((s: any) => s.id === "voter_id") || matchedService;
+      } else if (queryLower.match(/\bpan\b/) || queryLower.includes("tax")) {
+        matchedService = services.find((s: any) => s.id === "pan") || matchedService;
+      } else if (queryLower.includes("aadhaar")) {
+        matchedService = services.find((s: any) => s.id === "aadhaar") || matchedService;
       }
 
       // If we couldn't load the JSON, provide a hardcoded fallback
@@ -89,7 +109,7 @@ export async function POST(request: Request) {
           "Gather all the required documents listed above.",
           "Visit the official application portal to begin the process."
         ],
-        tips: [
+        tips: matchedService.common_mistakes || [
           "Ensure your mobile number is active for OTP verification.",
           "Keep scanned copies of your documents ready before starting the application."
         ]
