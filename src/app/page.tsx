@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { useLanguage } from '@/context/LanguageContext';
 
 type Document = {
@@ -57,6 +58,31 @@ export default function Home() {
 
   // Track checked state: serviceIndex -> documentIndex -> boolean
   const [checkedDocs, setCheckedDocs] = useState<Record<number, Record<number, boolean>>>({});
+
+  const [isListening, setIsListening] = useState(false);
+
+  const startListening = () => {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+      toast.error('Speech recognition not supported in this browser.');
+      return;
+    }
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.lang = language === 'hi' ? 'hi-IN' : 'en-US';
+    recognition.interimResults = false;
+    
+    recognition.onstart = () => setIsListening(true);
+    recognition.onresult = (event: any) => {
+      const transcript = event.results[0][0].transcript;
+      setQuery(transcript);
+    };
+    recognition.onerror = (event: any) => {
+      toast.error('Error occurred in speech recognition.');
+    };
+    recognition.onend = () => setIsListening(false);
+    
+    recognition.start();
+  };
 
   // UI State
   const [expandedServices, setExpandedServices] = useState<Record<number, boolean>>({});
@@ -235,12 +261,20 @@ export default function Home() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={t('home.placeholder')}
-              className="w-full bg-transparent py-4 md:py-5 pl-6 lg:pl-0 pr-4 text-lg text-[#111827] placeholder-gray-400 focus:outline-none rounded-b-3xl md:rounded-r-full md:rounded-bl-none"
+              className="w-full bg-transparent py-4 md:py-5 pl-6 lg:pl-0 pr-12 text-lg text-[#111827] placeholder-gray-400 focus:outline-none rounded-b-3xl md:rounded-r-full md:rounded-bl-none"
               disabled={loading}
             />
+            <button
+              type="button"
+              onClick={startListening}
+              className={`absolute right-4 md:right-8 p-2 rounded-full transition-all duration-300 ${isListening ? 'bg-red-100 text-red-600 animate-pulse scale-110' : 'text-gray-400 hover:text-[#2563EB] hover:bg-blue-50'}`}
+              title="Click to speak"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
+            </button>
           </div>
 
-          <div className="p-2 w-full md:w-auto">
+          <div className="p-2 w-full md:w-auto relative z-10 ml-2">
             <button
               type="submit"
               disabled={loading || !query.trim()}
