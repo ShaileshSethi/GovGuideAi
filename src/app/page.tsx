@@ -70,7 +70,7 @@ export default function Home() {
     const recognition = new SpeechRecognition();
     recognition.lang = language === 'hi' ? 'hi-IN' : 'en-US';
     recognition.interimResults = false;
-    
+
     recognition.onstart = () => setIsListening(true);
     recognition.onresult = (event: any) => {
       const transcript = event.results[0][0].transcript;
@@ -80,7 +80,7 @@ export default function Home() {
       toast.error('Error occurred in speech recognition.');
     };
     recognition.onend = () => setIsListening(false);
-    
+
     recognition.start();
   };
 
@@ -267,14 +267,14 @@ export default function Home() {
             <button
               type="button"
               onClick={startListening}
-              className={`absolute right-4 md:right-8 p-2 rounded-full transition-all duration-300 ${isListening ? 'bg-red-100 text-red-600 animate-pulse scale-110' : 'text-gray-400 hover:text-[#2563EB] hover:bg-blue-50'}`}
+              className={`absolute right-1 p-2 rounded-full transition-all duration-300 ${isListening ? 'bg-red-100 text-red-600 animate-pulse scale-110' : 'text-gray-400 hover:text-[#2563EB] hover:bg-blue-50'}`}
               title="Click to speak"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
             </button>
           </div>
 
-          <div className="p-2 w-full md:w-auto relative z-10 ml-2">
+          <div className="p-2 w-full md:w-auto relative z-10 ml-1">
             <button
               type="submit"
               disabled={loading || !query.trim()}
