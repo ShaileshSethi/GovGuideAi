@@ -52,29 +52,29 @@ export async function POST(request: Request) {
 
       let matchedService = services[0];
       
-      if (queryLower.includes("passport") || queryLower.includes("travel")) {
+      if (queryLower.includes("passport") || queryLower.includes("travel") || queryLower.includes("पासपोर्ट")) {
         matchedService = services.find((s: any) => s.id === "passport") || matchedService;
-      } else if (queryLower.includes("drive") || queryLower.includes("licence") || queryLower.includes("license") || queryLower.includes("vehicle")) {
+      } else if (queryLower.includes("drive") || queryLower.includes("licence") || queryLower.includes("license") || queryLower.includes("vehicle") || queryLower.includes("ड्राइविंग") || queryLower.includes("लाइसेंस") || queryLower.includes("गाड़ी")) {
         matchedService = services.find((s: any) => s.id === "driving_licence") || matchedService;
-      } else if (queryLower.includes("marriage") || queryLower.includes("wedding")) {
+      } else if (queryLower.includes("marriage") || queryLower.includes("wedding") || queryLower.includes("विवाह") || queryLower.includes("शादी") || queryLower.includes("मैरिज")) {
         matchedService = services.find((s: any) => s.id === "marriage_certificate") || matchedService;
-      } else if (queryLower.includes("birth")) {
+      } else if (queryLower.includes("birth") || queryLower.includes("जन्म") || queryLower.includes("पैदा")) {
         matchedService = services.find((s: any) => s.id === "birth_certificate") || matchedService;
-      } else if (queryLower.includes("death")) {
+      } else if (queryLower.includes("death") || queryLower.includes("मृत्यु") || queryLower.includes("मौत")) {
         matchedService = services.find((s: any) => s.id === "death_certificate") || matchedService;
-      } else if (queryLower.includes("income") || queryLower.includes("salary")) {
+      } else if (queryLower.includes("income") || queryLower.includes("salary") || queryLower.includes("आय") || queryLower.includes("सैलरी") || queryLower.includes("इनकम")) {
         matchedService = services.find((s: any) => s.id === "income_certificate") || matchedService;
-      } else if (queryLower.includes("caste")) {
+      } else if (queryLower.includes("caste") || queryLower.includes("जाति") || queryLower.includes("कास्ट")) {
         matchedService = services.find((s: any) => s.id === "caste_certificate") || matchedService;
-      } else if (queryLower.includes("domicile") || queryLower.includes("resident")) {
+      } else if (queryLower.includes("domicile") || queryLower.includes("resident") || queryLower.includes("निवास") || queryLower.includes("डोमिसाइल")) {
         matchedService = services.find((s: any) => s.id === "domicile_certificate") || matchedService;
-      } else if (queryLower.includes("police") || queryLower.includes("pcc")) {
+      } else if (queryLower.includes("police") || queryLower.includes("pcc") || queryLower.includes("पुलिस") || queryLower.includes("पीसीसी")) {
         matchedService = services.find((s: any) => s.id === "police_clearance") || matchedService;
-      } else if (queryLower.includes("voter") || queryLower.includes("election")) {
+      } else if (queryLower.includes("voter") || queryLower.includes("election") || queryLower.includes("वोटर") || queryLower.includes("मतदान") || queryLower.includes("चुनाव")) {
         matchedService = services.find((s: any) => s.id === "voter_id") || matchedService;
-      } else if (queryLower.match(/\bpan\b/) || queryLower.includes("tax")) {
+      } else if (queryLower.match(/\bpan\b/) || queryLower.includes("tax") || queryLower.includes("पैन") || queryLower.includes("टैक्स")) {
         matchedService = services.find((s: any) => s.id === "pan") || matchedService;
-      } else if (queryLower.includes("aadhaar")) {
+      } else if (queryLower.includes("aadhaar") || queryLower.includes("आधार")) {
         matchedService = services.find((s: any) => s.id === "aadhaar") || matchedService;
       }
 
