@@ -62,13 +62,15 @@ export default function Home() {
   const [isListening, setIsListening] = useState(false);
 
   const startListening = () => {
+    if (isListening) return;
+    
     if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
       toast.error('Speech recognition not supported in this browser.');
       return;
     }
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
-    recognition.lang = language === 'hi' ? 'hi-IN' : 'en-US';
+    recognition.lang = language === 'hi' ? 'hi-IN' : 'en-IN';
     recognition.interimResults = false;
 
     recognition.onstart = () => setIsListening(true);
@@ -77,7 +79,8 @@ export default function Home() {
       setQuery(transcript);
     };
     recognition.onerror = (event: any) => {
-      toast.error('Error occurred in speech recognition.');
+      toast.error('Microphone error: ' + event.error);
+      setIsListening(false);
     };
     recognition.onend = () => setIsListening(false);
 
