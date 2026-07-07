@@ -47,7 +47,7 @@ const LOADING_MESSAGES = [
 ];
 
 export default function Home() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [category, setCategory] = useState('General Issue');
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
