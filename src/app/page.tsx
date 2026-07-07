@@ -252,7 +252,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex-1 w-full flex items-center">
+          <div className="flex-1 w-full flex items-center relative">
             <div className="pl-6 pr-3 text-muted-foreground hidden lg:block">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             </div>
