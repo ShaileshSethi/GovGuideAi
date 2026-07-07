@@ -53,3 +53,57 @@ describe('POST /api/generate', () => {
     expect(data.services[0].name).toBe('Aadhaar Card');
   });
 });
+
+// Mock the genai package
+jest.mock('@google/genai', () => {
+  return {
+    GoogleGenAI: jest.fn().mockImplementation(() => {
+      return {
+        models: {
+          generateContent: jest.fn().mockResolvedValue({
+            text: JSON.stringify({
+              isClarificationNeeded: false,
+              summary: 'Mocked Gemini response summary',
+              services: [{ name: 'Mocked Service', description: 'Mocked Description' }]
+            })
+          })
+        }
+      };
+    })
+  };
+});
+
+describe('POST /api/generate with GEMINI_API_KEY', () => {
+  const createMockRequest = (query: string, language: string = 'en') => {
+    return new NextRequest('http://localhost:3000/api/generate', {
+      method: 'POST',
+      body: JSON.stringify({ query, language }),
+    });
+  };
+
+  beforeEach(() => {
+    process.env.GEMINI_API_KEY = 'mocked_api_key';
+  });
+
+  afterEach(() => {
+    delete process.env.GEMINI_API_KEY;
+  });
+
+  it('calls Gemini API and returns the parsed JSON response', async () => {
+    const req = createMockRequest('I need to renew my passport');
+    const res = await POST(req);
+    const data = await res.json();
+    
+    expect(res.status).toBe(200);
+    expect(data.summary).toBe('Mocked Gemini response summary');
+    expect(data.services[0].name).toBe('Mocked Service');
+  });
+
+  it('returns 400 if query is missing', async () => {
+    const req = createMockRequest('');
+    const res = await POST(req);
+    expect(res.status).toBe(400);
+    const data = await res.json();
+    expect(data.error).toBe('Query is required');
+  });
+});

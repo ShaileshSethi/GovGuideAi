@@ -76,4 +76,34 @@ describe('Home Page UI', () => {
     expect(screen.getByText('Step 1')).toBeInTheDocument();
     expect(screen.getByText('5 days')).toBeInTheDocument();
   });
+
+  it('can open document info modal and close it', async () => {
+    const planWithDocs = {
+      ...mockActionPlan,
+      services: [
+        {
+          ...mockActionPlan.services[0],
+          required_documents: [{ name: 'Test Document', purpose: 'To test', where_to_get: 'Online', issuing_authority: 'Testing Dept', official_link: 'http://test.com', mandatory: true }]
+        }
+      ]
+    };
+    (global.fetch as jest.Mock).mockResolvedValueOnce({ ok: true, json: async () => planWithDocs });
+    renderHome();
+    
+    fireEvent.change(screen.getByPlaceholderText(/Specify your problem/i), { target: { value: 'test' } });
+    fireEvent.click(screen.getByText('Generate Action Plan'));
+    
+    await waitFor(() => {
+      expect(screen.getByText('Test Document')).toBeInTheDocument();
+    });
+    
+    // Click Info button
+    fireEvent.click(screen.getByText('Info'));
+    
+    // Check Modal
+    expect(screen.getByText('To test')).toBeInTheDocument();
+    
+    // Click backdrop to close
+    fireEvent.click(screen.getByText('To test').parentElement?.parentElement?.parentElement?.firstChild as HTMLElement);
+  });
 });
