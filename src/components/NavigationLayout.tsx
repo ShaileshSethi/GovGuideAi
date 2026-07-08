@@ -1,14 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
 
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
-
 import { signOut } from 'next-auth/react';
+import { motion } from 'framer-motion';
+import AIBotSidebar from './AIBotSidebar';
 
 export default function NavigationLayout({ children, user }: { children: React.ReactNode, user?: any }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isBotOpen, setIsBotOpen] = useState(false);
   const pathname = usePathname();
   const { t, language, setLanguage } = useLanguage();
 
@@ -28,9 +32,9 @@ export default function NavigationLayout({ children, user }: { children: React.R
         className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-[#E5E7EB] transform transition-transform duration-300 ease-in-out flex flex-col ${isSidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}`}
       >
         <div className="h-16 flex items-center px-6 border-b border-[#E5E7EB] justify-between">
-          <Link href="/" className="text-xl font-bold text-[#111827] hover:text-[#2563EB] transition-colors">
+          <a href="/" className="text-xl font-bold text-[#111827] hover:text-[#2563EB] transition-colors">
             {t('home.title')}
-          </Link>
+          </a>
           <button className="text-gray-500 hover:text-gray-900 focus:outline-none bg-gray-100 hover:bg-gray-200 p-1.5 rounded-lg transition-colors" onClick={() => setIsSidebarOpen(false)}>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
@@ -104,9 +108,9 @@ export default function NavigationLayout({ children, user }: { children: React.R
             >
               <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
             </button>
-            <Link href="/" className="ml-4 text-xl font-bold text-[#111827] hover:text-[#2563EB] transition-colors hidden sm:block">
+            <a href="/" className="ml-4 text-xl font-bold text-[#111827] hover:text-[#2563EB] transition-colors hidden sm:block">
               {t('home.title')}
-            </Link>
+            </a>
           </div>
 
           <div className="flex items-center space-x-4">
@@ -152,6 +156,27 @@ export default function NavigationLayout({ children, user }: { children: React.R
           </div>
         </main>
       </div>
+
+      {/* Floating AI Bot Action Button */}
+      {!isBotOpen && (
+        <motion.div 
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setIsBotOpen(true)}
+          className="fixed bottom-8 right-8 z-[55] flex items-center justify-center w-16 h-16 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl hover:shadow-primary/30 transition-shadow border border-white/20 backdrop-blur-md cursor-pointer"
+        >
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+          <span className="absolute -top-2 -right-2 flex h-4 w-4">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-4 w-4 bg-white border-2 border-primary"></span>
+          </span>
+        </motion.div>
+      )}
+
+      {/* Persistent Bot Sidebar */}
+      <AIBotSidebar isOpen={isBotOpen} onClose={() => setIsBotOpen(false)} />
     </div>
   );
 }

@@ -68,12 +68,12 @@ export default function SettingsPage() {
       <div className="space-y-8">
         
         {/* Security & Privacy */}
-        <section className="bg-card border border-border rounded-3xl overflow-hidden shadow-sm">
-          <div className="p-6 border-b border-border bg-background/50">
+        <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl overflow-hidden shadow-sm">
+          <div className="p-6 border-b border-white/20 bg-white/5">
             <h2 className="text-lg font-bold text-foreground">{t('settings.security')}</h2>
           </div>
           
-          <div className="p-6 border-b border-border flex items-center justify-between">
+          <div className="p-6 border-b border-white/20 flex items-center justify-between">
             <div>
               <h3 className="font-bold text-foreground">{t('settings.2fa')}</h3>
               <p className="text-sm text-muted-foreground mt-1">{t('settings.2fa_desc')}</p>
@@ -94,19 +94,19 @@ export default function SettingsPage() {
               <h3 className="font-bold text-foreground">{t('settings.sessions')}</h3>
               <p className="text-sm text-muted-foreground mt-1">{t('settings.sessions_desc')}</p>
             </div>
-            <button onClick={handleLogOutAll} className="bg-background border border-border text-foreground hover:bg-muted px-4 py-2 rounded-xl text-sm font-bold transition-colors shadow-sm">
+            <button onClick={handleLogOutAll} className="bg-white/20 backdrop-blur-md border border-white/30 text-foreground hover:bg-white/30 px-4 py-2 rounded-xl text-sm font-bold transition-colors shadow-sm">
               {t('settings.logout_all')}
             </button>
           </div>
         </section>
 
         {/* Preferences */}
-        <section className="bg-card border border-border rounded-3xl overflow-hidden shadow-sm">
-          <div className="p-6 border-b border-border bg-background/50">
+        <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl overflow-hidden shadow-sm">
+          <div className="p-6 border-b border-white/20 bg-white/5">
             <h2 className="text-lg font-bold text-foreground">{t('settings.preferences')}</h2>
           </div>
           
-          <div className="p-6 border-b border-border flex items-center justify-between">
+          <div className="p-6 border-b border-white/20 flex items-center justify-between">
             <div>
               <h3 className="font-bold text-foreground">{t('settings.notifications')}</h3>
               <p className="text-sm text-muted-foreground mt-1">{t('settings.notifications_desc')}</p>
@@ -122,7 +122,7 @@ export default function SettingsPage() {
             </button>
           </div>
 
-          <div className="p-6 border-b border-border flex items-center justify-between">
+          <div className="p-6 border-b border-white/20 flex items-center justify-between">
             <div>
               <h3 className="font-bold text-foreground">{t('settings.language')}</h3>
               <p className="text-sm text-muted-foreground mt-1">{t('settings.language_desc')}</p>
@@ -130,7 +130,7 @@ export default function SettingsPage() {
             <select 
               value={language}
               onChange={(e) => handleLanguageChange(e.target.value)}
-              className="bg-background border border-border text-foreground text-sm rounded-xl focus:ring-primary focus:border-primary block p-2 font-medium cursor-pointer outline-none"
+              className="bg-white/20 backdrop-blur-md border border-white/30 text-foreground text-sm rounded-xl focus:ring-primary focus:border-primary block p-2 font-medium cursor-pointer outline-none shadow-sm"
             >
               <option value="en">English</option>
               <option value="hi">Hindi</option>
@@ -145,7 +145,7 @@ export default function SettingsPage() {
             <select 
               value={textSize}
               onChange={(e) => changeTextSize(e.target.value)}
-              className="bg-background border border-border text-foreground text-sm rounded-xl focus:ring-primary focus:border-primary block p-2 font-medium cursor-pointer outline-none"
+              className="bg-white/20 backdrop-blur-md border border-white/30 text-foreground text-sm rounded-xl focus:ring-primary focus:border-primary block p-2 font-medium cursor-pointer outline-none shadow-sm"
             >
               <option value="Small">Small</option>
               <option value="Medium">Medium</option>
@@ -155,8 +155,8 @@ export default function SettingsPage() {
         </section>
 
         {/* Data Management */}
-        <section className="bg-card border border-border rounded-3xl overflow-hidden shadow-sm">
-          <div className="p-6 border-b border-border bg-background/50">
+        <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl overflow-hidden shadow-sm">
+          <div className="p-6 border-b border-white/20 bg-white/5">
             <h2 className="text-lg font-bold text-foreground">{t('settings.data')}</h2>
           </div>
           <div className="p-6 flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0">
@@ -164,7 +164,7 @@ export default function SettingsPage() {
               <h3 className="font-bold text-foreground">{t('settings.export')}</h3>
               <p className="text-sm text-muted-foreground mt-1">{t('settings.export_desc')}</p>
             </div>
-            <button onClick={handleDownloadData} className="bg-background border border-border text-foreground hover:bg-muted px-4 py-2 rounded-xl text-sm font-bold transition-colors shadow-sm flex items-center justify-center space-x-2">
+            <button onClick={handleDownloadData} className="bg-white/20 backdrop-blur-md border border-white/30 text-foreground hover:bg-white/30 px-4 py-2 rounded-xl text-sm font-bold transition-colors shadow-sm flex items-center justify-center space-x-2">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
               <span>{t('settings.download')}</span>
             </button>

@@ -29,7 +29,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: '/login',
   },
   callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
+    authorized() {
       return true; // We are allowing anyone to view the pages for now, just checking if logged in.
     },
   },
