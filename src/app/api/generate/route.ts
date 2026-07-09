@@ -7,6 +7,11 @@ import path from 'path';
 // Simple in-memory cache for queries to improve performance and reduce API calls
 const queryCache = new Map<string, any>();
 
+// In-memory cache for static files to prevent disk I/O on every request
+let cachedSystemPrompt: string | null = null;
+let cachedKnowledgeContext: string | null = null;
+let cachedMockServices: any[] | null = null;
+
 export async function POST(request: Request) {
   try {
     const { query, language } = await request.json();
@@ -36,19 +41,22 @@ export async function POST(request: Request) {
       }
 
       // Dynamic Mock Fallback based on category/query
-      // Let's try to find a matching service in the JSON database
       let services = [];
-      try {
-        const dataPath = path.join(process.cwd(), 'data');
-        const files = await fs.readdir(dataPath);
-        for (const file of files) {
-          if (file.endsWith('.json')) {
-            const fileContent = await fs.readFile(path.join(dataPath, file), 'utf-8');
-            services.push(JSON.parse(fileContent));
-          }
+      if (cachedMockServices) {
+        services = cachedMockServices;
+      } else {
+        try {
+          const dataPath = path.join(process.cwd(), 'data');
+          const files = await fs.readdir(dataPath);
+          const readPromises = files.filter(f => f.endsWith('.json')).map(async file => {
+            const content = await fs.readFile(path.join(dataPath, file), 'utf-8');
+            return JSON.parse(content);
+          });
+          services = await Promise.all(readPromises);
+          cachedMockServices = services;
+        } catch (err) {
+          console.warn("Could not read data directory for mock data fallback.");
         }
-      } catch (err) {
-        console.warn("Could not read data directory for mock data fallback.");
       }
 
       let matchedService = services[0];
@@ -119,30 +127,33 @@ export async function POST(request: Request) {
 
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-    // 1. Read System Prompt
-    const systemPromptPath = path.join(process.cwd(), 'SYSTEM.MD');
-    let systemPrompt = '';
-    try {
-      systemPrompt = await fs.readFile(systemPromptPath, 'utf-8');
-    } catch (error) {
-      console.warn("Could not read SYSTEM.MD, using default.");
+    // 1. Read System Prompt (Cached)
+    let systemPrompt = cachedSystemPrompt || '';
+    if (!cachedSystemPrompt) {
+      try {
+        systemPrompt = await fs.readFile(path.join(process.cwd(), 'SYSTEM.MD'), 'utf-8');
+        cachedSystemPrompt = systemPrompt;
+      } catch (error) {
+        console.warn("Could not read SYSTEM.MD, using default.");
+      }
     }
 
-    // 2. Read Structured JSON Knowledge Base
-    const dataPath = path.join(process.cwd(), 'data');
-    let knowledgeContext = '';
-    try {
-      const files = await fs.readdir(dataPath);
-      const servicesArray = [];
-      for (const file of files) {
-        if (file.endsWith('.json')) {
-          const fileContent = await fs.readFile(path.join(dataPath, file), 'utf-8');
-          servicesArray.push(JSON.parse(fileContent));
-        }
+    // 2. Read Structured JSON Knowledge Base (Cached)
+    let knowledgeContext = cachedKnowledgeContext || '';
+    if (!cachedKnowledgeContext) {
+      try {
+        const dataPath = path.join(process.cwd(), 'data');
+        const files = await fs.readdir(dataPath);
+        const readPromises = files.filter(f => f.endsWith('.json')).map(async file => {
+          const content = await fs.readFile(path.join(dataPath, file), 'utf-8');
+          return JSON.parse(content);
+        });
+        const servicesArray = await Promise.all(readPromises);
+        knowledgeContext = JSON.stringify(servicesArray, null, 2);
+        cachedKnowledgeContext = knowledgeContext;
+      } catch (error) {
+        console.warn("Could not read /data directory database.");
       }
-      knowledgeContext = JSON.stringify(servicesArray, null, 2);
-    } catch (error) {
-      console.warn("Could not read /data directory database.");
     }
 
     // 3. Construct Prompt

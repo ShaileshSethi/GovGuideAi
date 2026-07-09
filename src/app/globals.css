@@ -6,10 +6,10 @@
   --foreground: #064E3B; /* deep green */
 
   /* Glassmorphic card variables */
-  --card: rgba(255, 255, 255, 0.7);
+  --card: rgba(255, 255, 255, 0.85);
   --card-foreground: #064E3B;
   
-  --border: rgba(21, 128, 61, 0.2); /* soft green border */
+  --border: rgba(21, 128, 61, 0.15); /* softer, elegant border */
 
   /* The main GovTech Green */
   --primary: #15803D;
@@ -52,6 +52,7 @@ body {
   background-attachment: fixed;
   animation: gradientShift 15s ease infinite;
   min-height: 100vh;
+  position: relative;
 }
 
 @keyframes gradientShift {

@@ -62,6 +62,49 @@ export default function Home() {
   // Track checked state: serviceIndex -> documentIndex -> boolean
   const [checkedDocs, setCheckedDocs] = useState<Record<number, Record<number, boolean>>>({});
 
+  const [placeholderText, setPlaceholderText] = useState('');
+
+  useEffect(() => {
+    const examples = [
+      'I lost my Aadhaar card...',
+      'How to register a new business...',
+      'Steps to get a passport...',
+      'Update address on voter ID...'
+    ];
+    let exampleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let timeoutId: NodeJS.Timeout;
+
+    const type = () => {
+      const currentExample = examples[exampleIndex];
+      
+      if (isDeleting) {
+        setPlaceholderText(currentExample.substring(0, charIndex - 1));
+        charIndex--;
+      } else {
+        setPlaceholderText(currentExample.substring(0, charIndex + 1));
+        charIndex++;
+      }
+
+      let typeSpeed = isDeleting ? 30 : 80;
+
+      if (!isDeleting && charIndex === currentExample.length) {
+        typeSpeed = 2000; // Pause at end
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        exampleIndex = (exampleIndex + 1) % examples.length;
+        typeSpeed = 500; // Pause before new word
+      }
+
+      timeoutId = setTimeout(type, typeSpeed);
+    };
+
+    timeoutId = setTimeout(type, 1000);
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   const [isListening, setIsListening] = useState(false);
 
   const startListening = () => {
@@ -155,13 +198,16 @@ export default function Home() {
   };
 
   const toggleCheck = (serviceIdx: number, docIdx: number) => {
-    setCheckedDocs(prev => ({
-      ...prev,
-      [serviceIdx]: {
-        ...(prev[serviceIdx] || {}),
-        [docIdx]: !prev[serviceIdx]?.[docIdx]
-      }
-    }));
+    setCheckedDocs(prev => {
+      const newState = {
+        ...prev,
+        [serviceIdx]: {
+          ...(prev[serviceIdx] || {}),
+          [docIdx]: !prev[serviceIdx]?.[docIdx]
+        }
+      };
+      return newState;
+    });
   };
 
   const toggleServiceExpand = (index: number) => {
@@ -243,7 +289,7 @@ export default function Home() {
           >
             {/* Ambient Hero Graphic */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-[600px] h-[600px] opacity-40 mix-blend-screen pointer-events-none blur-2xl">
-              <Image src="/hero-graphic.png" alt="Hero background" fill className="object-cover" />
+              <Image src="/hero-graphic.png" alt="Hero background" fill sizes="600px" priority className="object-cover" />
             </div>
 
             <motion.div 
@@ -252,10 +298,10 @@ export default function Home() {
             >
               <svg className="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
             </motion.div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-foreground drop-shadow-sm">
+            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 text-foreground drop-shadow-sm leading-tight">
               {t('home.title')}
             </h1>
-            <h3 className="text-lg md:text-xl text-muted-foreground font-medium max-w-2xl mx-auto drop-shadow-sm">
+            <h3 className="text-xl md:text-2xl text-muted-foreground font-medium max-w-2xl mx-auto drop-shadow-sm mb-4">
               {t('home.subtitle')}
             </h3>
           </motion.div>
@@ -298,17 +344,30 @@ export default function Home() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder={t('home.placeholder')}
+              placeholder={placeholderText || t('home.placeholder')}
               className="w-full bg-transparent py-4 md:py-5 pl-6 lg:pl-0 pr-12 text-lg text-foreground placeholder-muted-foreground focus:outline-none rounded-b-3xl md:rounded-r-full md:rounded-bl-none"
               disabled={loading}
             />
             <button
               type="button"
               onClick={startListening}
-              className={`absolute right-1 p-2 rounded-full transition-all duration-300 ${isListening ? 'bg-red-100/50 backdrop-blur-sm text-red-600 animate-pulse scale-110' : 'text-muted-foreground hover:text-primary hover:bg-primary/10'}`}
+              className={`absolute right-1 p-2 rounded-full transition-all duration-300 ${isListening ? 'bg-red-100/50 backdrop-blur-sm text-red-600' : 'text-muted-foreground hover:text-primary hover:bg-primary/10'}`}
               title="Click to speak"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
+              {isListening ? (
+                <div className="flex items-center justify-center space-x-0.5 h-6 w-6">
+                  {[1, 2, 3].map((i) => (
+                    <motion.div
+                      key={i}
+                      animate={{ height: ['4px', '20px', '4px'] }}
+                      transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.15 }}
+                      className="w-1 bg-red-500 rounded-full"
+                    />
+                  ))}
+                </div>
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
+              )}
             </button>
           </div>
 
@@ -337,25 +396,38 @@ export default function Home() {
           >
             {loading ? (
               <motion.div 
-                key="loading-spinner"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, filter: 'blur(5px)' }}
-                className="flex flex-col items-center"
+                key="loading-skeleton"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="w-full max-w-4xl mx-auto space-y-6 text-left"
               >
-                <div className="relative w-16 h-16 mb-6">
-                  <svg className="animate-spin text-border" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                </svg>
-                <svg className="animate-spin absolute top-0 left-0 text-primary" viewBox="0 0 24 24" fill="none">
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                </svg>
+                {/* Skeleton Summary Card */}
+                <div className="bg-primary/5 border border-primary/10 p-8 rounded-3xl animate-pulse">
+                  <div className="h-8 bg-primary/20 rounded w-1/4 mb-4"></div>
+                  <div className="h-4 bg-muted-foreground/20 rounded w-full mb-2"></div>
+                  <div className="h-4 bg-muted-foreground/20 rounded w-5/6"></div>
                 </div>
+                
+                {/* Skeleton Service Cards */}
+                <div className="space-y-4">
+                  <div className="h-6 bg-border/50 rounded w-32 mb-4"></div>
+                  {[1, 2].map((i) => (
+                    <div key={i} className="bg-card/70 border border-white/40 p-6 md:p-8 rounded-3xl animate-pulse flex items-center">
+                      <div className="w-14 h-14 bg-primary/10 rounded-2xl mr-5 flex-shrink-0"></div>
+                      <div className="flex-1">
+                        <div className="h-6 bg-foreground/10 rounded w-1/3 mb-2"></div>
+                        <div className="h-4 bg-muted-foreground/10 rounded w-2/3"></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
                 <motion.p 
                   key={loadingMessageIdx}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-lg text-muted-foreground font-bold"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center text-lg text-primary font-bold mt-8"
                 >
                   {LOADING_MESSAGES[loadingMessageIdx]}
                 </motion.p>
@@ -484,8 +556,20 @@ export default function Home() {
                 <span className="bg-card p-2 rounded-xl shadow-sm mr-3">🗺️</span>
                 {t('plan.summary')}
               </h2>
+              <button
+                onClick={() => {
+                  if (!result) return;
+                  const textPlan = `GovGuide AI Plan\n\nSummary:\n${result.summary}\n\nServices:\n${result.services.map(s => `- ${s.name}: ${s.description}`).join('\n')}\n\nNext Steps:\n${result.next_steps?.join('\n') || ''}\n\nTips:\n${result.tips?.join('\n') || ''}`;
+                  navigator.clipboard.writeText(textPlan);
+                  toast.success('Action Plan Copied!');
+                }}
+                className="mt-4 md:mt-0 flex items-center bg-card hover:bg-muted text-primary font-bold py-2 px-4 rounded-xl border border-primary/20 shadow-sm transition-colors text-sm"
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                Copy Plan
+              </button>
             </div>
-            <p className="text-lg text-foreground font-bold leading-relaxed">
+            <p className="text-lg text-foreground font-medium leading-relaxed">
               {result.summary}
             </p>
           </motion.section>
@@ -541,7 +625,14 @@ export default function Home() {
                       </div>
 
                       {/* Document Checklist for this service */}
-                      <h5 className="text-lg font-bold text-foreground mb-4">{t('plan.docs')}</h5>
+                      <div className="flex items-center justify-between mb-4">
+                        <h5 className="text-lg font-bold text-foreground">{t('plan.docs')}</h5>
+                        {service.required_documents?.length > 0 && (
+                          <div className="text-sm font-medium text-muted-foreground bg-card px-3 py-1 rounded-full border border-border">
+                            {Object.keys(checkedDocs[serviceIdx] || {}).filter(k => checkedDocs[serviceIdx][parseInt(k)]).length} / {service.required_documents.length} Collected
+                          </div>
+                        )}
+                      </div>
                       <div className="space-y-3 mb-8">
                         {service.required_documents?.map((doc, docIdx) => (
                           <div

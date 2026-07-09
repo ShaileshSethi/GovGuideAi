@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import NavigationLayout from "@/components/NavigationLayout";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
+  subsets: ["latin"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -27,7 +32,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jakarta.variable} h-full antialiased`}
+      className={`${jakarta.variable} ${inter.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full font-sans bg-background text-foreground" suppressHydrationWarning>
